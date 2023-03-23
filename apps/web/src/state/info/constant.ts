@@ -11,10 +11,10 @@ import {
   ETH_TOKEN_WHITELIST,
 } from 'config/constants/info'
 
-export type MultiChainName = 'BSC' | 'ETH'
+export type MultiChainName = 'LBX' | 'ETH'
 
 export const multiChainQueryMainToken = {
-  BSC: 'BNB',
+  BSC: 'LBX',
   ETH: 'ETH',
 }
 

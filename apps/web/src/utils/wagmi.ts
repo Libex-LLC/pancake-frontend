@@ -2,7 +2,7 @@ import { BinanceWalletConnector } from '@pancakeswap/wagmi/connectors/binanceWal
 import { BloctoConnector } from '@pancakeswap/wagmi/connectors/blocto'
 import { TrustWalletConnector } from '@pancakeswap/wagmi/connectors/trustWallet'
 import { bsc, bscTestnet, goerli, mainnet } from 'wagmi/chains'
-import { configureChains, createClient } from 'wagmi'
+import { Chain, configureChains, createClient } from 'wagmi'
 import memoize from 'lodash/memoize'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
@@ -12,7 +12,27 @@ import { LedgerConnector } from 'wagmi/connectors/ledger'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 import { SafeConnector } from './safeConnector'
 
-const CHAINS = [bsc, mainnet, bscTestnet, goerli]
+const lbxChain: Chain = {
+  id: 2701,
+  name: "Libex",
+  network: "libex",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Libex",
+    symbol: "LBX",
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://rpc.libex.ai']
+    }
+  },
+  blockExplorers: {
+    default: { name: "Libex Explorer", url: "https://explorer.libex.ai" },
+  },
+  testnet: false,
+};
+
+const CHAINS = [bsc, mainnet, bscTestnet, goerli, lbxChain]
 
 const getNodeRealUrl = (networkName: string) => {
   let host = null
