@@ -46,7 +46,6 @@ export const computePairAddress = ({
       ),
     }
   }
-
   return PAIR_ADDRESS_CACHE[key]
 }
 

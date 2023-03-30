@@ -9,6 +9,15 @@ export const CAKE_MAINNET = new ERC20Token(
   'https://pancakeswap.finance/',
 )
 
+export const CAKE_MAINNET_LBX = new ERC20Token(
+  ChainId.LIBEX,
+  '0xD3657F8006897702a72d70419C50b9074b89aD7b',
+  18,
+  'CAKE',
+  'PancakeSwap Token',
+  'https://pancakeswap.finance/',
+)
+
 export const CAKE_TESTNET = new ERC20Token(
   ChainId.BSC_TESTNET,
   '0xFa60D973F7642B748046464e165A65B7323b0DEE',
@@ -106,16 +115,26 @@ export const BUSD_GOERLI = new ERC20Token(
   'https://www.paxos.com/busd/',
 )
 
+export const SZAR = new ERC20Token(
+  ChainId.LIBEX,
+  '0x10D0Eb74B0ffeb0D9096D30Ff70Bb1DDF56B2754',
+  18,
+  'sZAR',
+  'Stable South African Rand'
+)
+
 export const BUSD: Record<ChainId, ERC20Token> = {
   [ChainId.ETHEREUM]: BUSD_ETH,
   [ChainId.GOERLI]: BUSD_GOERLI,
   [ChainId.BSC]: BUSD_BSC,
   [ChainId.BSC_TESTNET]: BUSD_TESTNET,
+  [ChainId.LIBEX]: SZAR
 }
 
 export const CAKE = {
   [ChainId.BSC]: CAKE_MAINNET,
   [ChainId.BSC_TESTNET]: CAKE_TESTNET,
+  [ChainId.LIBEX]: CAKE_MAINNET_LBX
 }
 
 export const USDC = {
@@ -137,3 +156,7 @@ export const WBTC_ETH = new ERC20Token(
   'WBTC',
   'Wrapped BTC',
 )
+
+export const SZAR_LBX = {
+  [ChainId.LIBEX]: SZAR
+}

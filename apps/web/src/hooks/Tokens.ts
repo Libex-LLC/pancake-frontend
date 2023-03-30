@@ -135,8 +135,8 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
     ? str
     : // need to check for proper bytes string and valid terminator
     bytes32 && BYTES32_REGEX.test(bytes32) && arrayify(bytes32)[31] === 0
-    ? parseBytes32String(bytes32)
-    : defaultValue
+      ? parseBytes32String(bytes32)
+      : defaultValue
 }
 
 // undefined if invalid or does not exist
@@ -145,7 +145,6 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
 export function useToken(tokenAddress?: string): ERC20Token | undefined | null {
   const { chainId } = useActiveChainId()
   const tokens = useAllTokens()
-
   const address = isAddress(tokenAddress)
 
   const token: ERC20Token | undefined = address ? tokens[address] : undefined
@@ -167,10 +166,10 @@ export function useToken(tokenAddress?: string): ERC20Token | undefined | null {
 
   const { data: dataBytes, status: statusBytes } = useSWRImmutable(
     !token &&
-      chainId &&
-      address &&
-      (status === FetchStatus.Fetched || status === FetchStatus.Failed) &&
-      (!tokenName || !symbol) && ['fetchTokenInfo32', chainId, address],
+    chainId &&
+    address &&
+    (status === FetchStatus.Fetched || status === FetchStatus.Failed) &&
+    (!tokenName || !symbol) && ['fetchTokenInfo32', chainId, address],
     async () => {
       const calls = ['name', 'symbol'].map((method) => {
         return { address: address.toString(), name: method }

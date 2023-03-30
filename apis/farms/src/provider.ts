@@ -23,3 +23,10 @@ export const goerliProvider = new StaticJsonRpcProvider(
   },
   5,
 )
+
+export const lbxProvider = new StaticJsonRpcProvider(
+  {
+    url: 'https://rpc.libex.ai/',
+    skipFetchSetup: true
+  }
+)

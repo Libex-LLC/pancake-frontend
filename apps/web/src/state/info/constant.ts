@@ -11,46 +11,54 @@ import {
   ETH_TOKEN_WHITELIST,
 } from 'config/constants/info'
 
-export type MultiChainName = 'LBX' | 'ETH'
+export type MultiChainName = 'BNB' | 'LBX' | 'ETH'
 
 export const multiChainQueryMainToken = {
-  BSC: 'LBX',
+  BSC: 'BNB',
   ETH: 'ETH',
+  LBX: 'LBX'
 }
 
 export const multiChainBlocksClient = {
   BSC: BLOCKS_CLIENT,
   ETH: BLOCKS_CLIENT_ETH,
+  LBX: ''
 }
 
 export const multiChainStartTime = {
   BSC: PCS_V2_START,
   ETH: PCS_ETH_START,
+  LBX: ''
 }
 
 export const multiChainId = {
   BSC: ChainId.BSC,
   ETH: ChainId.ETHEREUM,
+  LBX: ChainId.LIBEX
 }
 
 export const multiChainPaths = {
   [ChainId.BSC]: '',
   [ChainId.ETHEREUM]: '/eth',
+  [ChainId.LIBEX]: '/lbx'
 }
 
 export const multiChainQueryClient = {
   BSC: infoClient,
   ETH: infoClientETH,
+  LBX: ''
 }
 
 export const multiChainQueryEndPoint = {
   BSC: INFO_CLIENT,
   ETH: INFO_CLIENT_ETH,
+  LBX: ''
 }
 
 export const multiChainScan = {
   BSC: 'BscScan',
   ETH: 'EtherScan',
+  LBX: 'libex'
 }
 
 export const multiChainTokenBlackList = {

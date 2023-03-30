@@ -303,11 +303,11 @@ const Staked: React.FunctionComponent<React.PropsWithChildren<StackedActionProps
   )
 
   const handleApprove = useCallback(async () => {
-    const receipt = await fetchWithCatchTxError(() => onApprove())
+    const receipt = await fetchWithCatchTxError(() => onApprove()) 
     if (receipt?.status) {
       toastSuccess(t('Contract Enabled'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       onDone()
-    }
+    } 
   }, [onApprove, t, toastSuccess, fetchWithCatchTxError, onDone])
 
   const [onPresentDeposit] = useModal(

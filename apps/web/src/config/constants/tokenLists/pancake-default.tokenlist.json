@@ -27,6 +27,22 @@
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/busd.png"
     },
     {
+      "name": "Wrapped Libex",
+      "symbol": "WLBX",
+      "address": "0x667Cab50823DB76Af66F5af7761Fd5ba61564463",
+      "chainId": 2701,
+      "decimals": 18,
+      "logoURI": "https://libex.mypinata.cloud/ipfs/QmTQsDCBKfTCYF7NRBGHQfW1s8xK3eULcGEQCNg7yTjX1C"
+    },
+    {
+      "name": "Stable South African Rand",
+      "symbol": "sZAR",
+      "address": "0x10D0Eb74B0ffeb0D9096D30Ff70Bb1DDF56B2754",
+      "chainId": 2701,
+      "decimals": 18,
+      "logoURI": "https://libex.mypinata.cloud/ipfs/QmcJJGoC49c5kLkJ54HtLs1nFwvtzii5L8zgJQLmfTTqLn"
+    },
+    {
       "name": "Ethereum Token",
       "symbol": "ETH",
       "address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",

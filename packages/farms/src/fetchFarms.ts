@@ -30,6 +30,11 @@ const evmNativeStableLpMap = {
     wNative: 'WBNB',
     stable: 'BUSD',
   },
+  [ChainId.LIBEX]: {
+    address: '0x517F492A54207Af948F7f068Ba5138b121b7D0E3',
+    wNative: 'WLBX',
+    stable: 'sZAR',
+  }
 }
 
 export const getTokenAmount = (balance: FixedNumber, decimals: number) => {
@@ -63,7 +68,6 @@ export async function farmV2FetchFarms({
     fetchMasterChefData(farms, isTestnet, multicallv2, masterChefAddress),
     fetchPublicFarmsData(farms, chainId, multicallv2, masterChefAddress),
   ])
-
   const stableFarmsData = (stableFarmsResults as StableLpData[]).map(formatStableFarm)
 
   const stableFarmsDataMap = stableFarms.reduce<Record<number, FormatStableFarmResponse>>((map, farm, index) => {
@@ -81,18 +85,18 @@ export async function farmV2FetchFarms({
         ...farm,
         ...(stableFarmsDataMap[farm.pid]
           ? getStableFarmDynamicData({
-              ...lpData[index],
-              ...stableFarmsDataMap[farm.pid],
-              token0Decimals: farm.token.decimals,
-              token1Decimals: farm.quoteToken.decimals,
-              price1: stableFarmsDataMap[farm.pid].price1,
-            })
+            ...lpData[index],
+            ...stableFarmsDataMap[farm.pid],
+            token0Decimals: farm.token.decimals,
+            token1Decimals: farm.quoteToken.decimals,
+            price1: stableFarmsDataMap[farm.pid].price1,
+          })
           : getClassicFarmsDynamicData({
-              ...lpData[index],
-              ...stableFarmsDataMap[farm.pid],
-              token0Decimals: farm.token.decimals,
-              token1Decimals: farm.quoteToken.decimals,
-            })),
+            ...lpData[index],
+            ...stableFarmsDataMap[farm.pid],
+            token0Decimals: farm.token.decimals,
+            token1Decimals: farm.quoteToken.decimals,
+          })),
         ...getFarmAllocation({
           allocPoint: poolInfos[index]?.allocPoint,
           isRegular: poolInfos[index]?.isRegular,
@@ -167,10 +171,10 @@ const masterChefFarmCalls = (farm: SerializedFarmConfig, masterChefAddress: stri
 
   return pid || pid === 0
     ? {
-        address: masterChefAddress,
-        name: 'poolInfo',
-        params: [pid],
-      }
+      address: masterChefAddress,
+      name: 'poolInfo',
+      params: [pid],
+    }
     : null
 }
 
@@ -183,11 +187,10 @@ export const fetchMasterChefData = async (
   try {
     const masterChefCalls = farms.map((farm) => masterChefFarmCalls(farm, masterChefAddress))
     const masterChefAggregatedCalls = masterChefCalls.filter((masterChefCall) => masterChefCall !== null) as Call[]
-
     const masterChefMultiCallResult = await multicallv2({
       abi: masterChefV2Abi,
       calls: masterChefAggregatedCalls,
-      chainId: isTestnet ? ChainId.BSC_TESTNET : ChainId.BSC,
+      chainId: isTestnet ? ChainId.BSC_TESTNET : ChainId.LIBEX,
     })
 
     let masterChefChunkedResultCounter = 0
@@ -238,7 +241,7 @@ export const fetchMasterChefV2Data = async ({
           params: [true],
         },
       ],
-      chainId: isTestnet ? ChainId.BSC_TESTNET : ChainId.BSC,
+      chainId: isTestnet ? ChainId.BSC_TESTNET : ChainId.LIBEX,
     })
 
     return {

@@ -142,4 +142,9 @@ const nativeStableLpMap = {
     wNative: 'WBNB',
     stable: 'BUSD',
   },
+  [ChainId.LIBEX]: {
+    address: '0x517F492A54207Af948F7f068Ba5138b121b7D0E3',
+    wNative: 'WLBX',
+    stable: 'sZAR',
+  }
 }

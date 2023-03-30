@@ -14,7 +14,7 @@ export const registerToken = async (
   tokenSymbol: string,
   tokenDecimals: number,
   tokenLogo?: string,
-) => {
+) => { 
   // better leave this undefined for default image instead of broken image url
   const image = tokenLogo ? (BAD_SRCS[tokenLogo] ? undefined : tokenLogo) : undefined
   const tokenAdded = await window.ethereum.request({

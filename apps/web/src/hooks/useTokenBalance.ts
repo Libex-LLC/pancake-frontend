@@ -15,17 +15,16 @@ import { useSWRContract } from './useSWRContract'
 
 const useTokenBalance = (tokenAddress: string, forceBSC?: boolean) => {
   const { address: account } = useAccount()
-
   const contract = useTokenContract(tokenAddress, false)
 
   const key = useMemo(
     () =>
       account
         ? {
-            contract: forceBSC ? contract.connect(bscRpcProvider) : contract,
-            methodName: 'balanceOf',
-            params: [account],
-          }
+          contract: forceBSC ? contract.connect(bscRpcProvider) : contract,
+          methodName: 'balanceOf',
+          params: [account],
+        }
         : null,
     [account, contract, forceBSC],
   )

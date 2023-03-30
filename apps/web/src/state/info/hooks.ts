@@ -147,10 +147,10 @@ export const useAllTokenHighLight = (): TokenData[] => {
   const tokensWithData = useMemo(() => {
     return data
       ? Object.keys(data)
-          .map((k) => {
-            return data?.[k]?.data
-          })
-          .filter((d) => d && d.exists)
+        .map((k) => {
+          return data?.[k]?.data
+        })
+        .filter((d) => d && d.exists)
       : []
   }, [data])
   return useMemo(() => {
@@ -198,8 +198,8 @@ export const useTokenDatasSWR = (addresses?: string[], withSettings = true): Tok
   const allData = useMemo(() => {
     return data && data.length > 0
       ? data.reduce((a, b) => {
-          return { ...a, ...b }
-        }, {})
+        return { ...a, ...b }
+      }, {})
       : {}
   }, [data])
 

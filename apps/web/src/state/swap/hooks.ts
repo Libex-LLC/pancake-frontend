@@ -1,6 +1,6 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { Currency, CurrencyAmount, Price, Trade, TradeType } from '@pancakeswap/sdk'
-import { CAKE, USDC } from '@pancakeswap/tokens'
+import { CAKE, SZAR_LBX, USDC } from '@pancakeswap/tokens'
 import { equalsIgnoreCase } from '@pancakeswap/utils/equalsIgnoreCase'
 import tryParseAmount from '@pancakeswap/utils/tryParseAmount'
 import IPancakePairABI from 'config/abi/IPancakePair.json'
@@ -69,7 +69,6 @@ export function useSingleTokenSwapInfo(
 ): { [key: string]: number } {
   const token0Address = getTokenAddress(inputCurrencyId)
   const token1Address = getTokenAddress(outputCurrencyId)
-
   const parsedAmount = tryParseAmount('1', inputCurrency ?? undefined)
 
   const bestTradeExactIn = useBestTrade(parsedAmount, outputCurrency ?? undefined, TradeType.EXACT_INPUT)
@@ -254,7 +253,7 @@ export function useDefaultsFromURLSearch():
 
   useEffect(() => {
     if (!chainId || !native) return
-    const parsed = queryParametersToSwapState(query, native.symbol, CAKE[chainId]?.address ?? USDC[chainId]?.address)
+    const parsed = queryParametersToSwapState(query, native.symbol, USDC[chainId]?.address ?? SZAR_LBX[chainId]?.address)
 
     dispatch(
       replaceSwapState({

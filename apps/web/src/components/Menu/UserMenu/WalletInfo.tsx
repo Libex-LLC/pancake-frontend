@@ -21,6 +21,7 @@ import { ChainLogo } from 'components/Logo/ChainLogo'
 import { getBlockExploreLink, getBlockExploreName } from 'utils'
 import { formatBigNumber, getFullDisplayBalance } from '@pancakeswap/utils/formatBalance'
 import { useBalance } from 'wagmi'
+import { SZAR_LBX } from '@pancakeswap/tokens'
 import CakeBenefitsCard from './CakeBenefitsCard'
 
 const COLORS = {
@@ -43,11 +44,12 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
   const native = useNativeCurrency()
   const wNativeToken = !isBSC ? WNATIVE[chainId] : null
   const wBNBToken = WNATIVE[ChainId.BSC]
+  const sZARToken = SZAR_LBX[ChainId.LIBEX]
   const { balance: wNativeBalance, fetchStatus: wNativeFetchStatus } = useTokenBalance(wNativeToken?.address)
   const { balance: wBNBBalance, fetchStatus: wBNBFetchStatus } = useTokenBalance(wBNBToken?.address, true)
   const { balance: cakeBalance, fetchStatus: cakeFetchStatus } = useGetCakeBalance()
+  const { balance: sZARBalance, fetchStatus: sZARFetchStatus } = useTokenBalance(sZARToken?.address, false)
   const { logout } = useAuth()
-
   const handleLogout = () => {
     onDismiss?.()
     logout()
@@ -107,6 +109,18 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
                 <Skeleton height="22px" width="60px" />
               ) : (
                 <Text>{getFullDisplayBalance(wNativeBalance, wNativeToken.decimals, 6)}</Text>
+              )}
+            </Flex>
+          )}
+          {sZARBalance.gt(0) && (
+            <Flex alignItems="center" justifyContent="space-between">
+              <Text color="textSubtle">
+                {sZARToken.symbol} {t('Balance')}
+              </Text>
+              {sZARFetchStatus !== FetchStatus.Fetched ? (
+                <Skeleton height="22px" width="60px" />
+              ) : (
+                <Text>{getFullDisplayBalance(sZARBalance, sZARToken.decimals, 6)}</Text>
               )}
             </Flex>
           )}
