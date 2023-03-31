@@ -5,11 +5,13 @@ import { ChainId, Token } from '@pancakeswap/sdk'
 const mapping = {
   [ChainId.BSC]: 'smartchain',
   [ChainId.ETHEREUM]: 'ethereum',
+  [ChainId.LIBEX]: "libex"
 }
 
 const getTokenLogoURL = memoize(
   (token?: Token) => {
     if (token && mapping[token.chainId]) {
+      if(ChainId.LIBEX) return `/images/2701/tokens/${token.address}.png`
       return `https://assets-cdn.trustwallet.com/blockchains/${mapping[token.chainId]}/assets/${getAddress(
         token.address,
       )}/logo.png`

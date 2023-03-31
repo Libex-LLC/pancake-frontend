@@ -144,7 +144,7 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
         <Swap.CurrencyInputHeaderSubTitle>{subtitle}</Swap.CurrencyInputHeaderSubTitle>
       </Flex>
       <Flex width="100%" justifyContent="end">
-        <>
+        {/* <>
           <ColoredIconButton className="is-shining" variant="text" scale="sm">
             <TooltipText
               ref={campaignTargetRef}
@@ -165,7 +165,7 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
             </TooltipText>
           </ColoredIconButton>
           {campaignTooltipVisible && campaignTooltip}
-        </>
+        </> */}
 
         {isChartSupported && setIsChartDisplayed && (
           <ColoredIconButton

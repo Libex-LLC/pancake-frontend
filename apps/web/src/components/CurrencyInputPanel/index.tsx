@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Currency, Pair, Token, Percent, CurrencyAmount } from '@pancakeswap/sdk'
+import { Currency, Pair, Token, Percent, CurrencyAmount, ChainId } from '@pancakeswap/sdk'
 import { Button, ChevronDownIcon, Text, useModal, Flex, Box, NumericalInput, CopyButton } from '@pancakeswap/uikit'
 import styled, { css } from 'styled-components'
 import { isAddress } from 'utils'
@@ -257,7 +257,7 @@ export default function CurrencyInputPanel({
               <Flex maxWidth="200px">
                 {Number.isFinite(amountInDollar) ? (
                   <Text fontSize="12px" color="textSubtle">
-                    ~{formatNumber(amountInDollar)} USD
+                    ~{formatNumber(amountInDollar)} {ChainId.LIBEX ? token?.symbol : 'USD'}
                   </Text>
                 ) : (
                   <Box height="18px" />
